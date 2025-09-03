@@ -10,7 +10,7 @@ export default function Home() {
   const [options, setOptions] = useState([
     {
       href: '/wheels',
-      icon: <FaCarSide className="text-6xl text-accent mb-6 group-hover:scale-110 transition-transform" aria-hidden="true" />,
+      icon: <FaCarSide className="text-6xl text-accent mb-6 transition-transform drive-hover" aria-hidden="true" />,
       label: 'Wheels',
       ariaLabel: 'Go to Wheels page',
     },
@@ -32,10 +32,28 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>WhyteOwl | Home</title>
-        <meta name="description" content="WhyteOwl - Car wheels and bodywork catalog for enthusiasts and mechanics." />
+        <title>WhyteOwl | Premium Car Customization</title>
+        <meta name="description" content="WhyteOwl - Discover premium wheels and bodywork parts for your vehicle. Quality components for car enthusiasts and mechanics." />
       </Head>
-      <div className="flex flex-col items-center justify-center min-h-[70vh]" aria-label="Main home page options">
+      
+      {/* Hero Section */}
+      <div className="text-center py-12 px-4">
+        <h1 className="text-5xl md:text-6xl font-heading font-black text-textPrimary mb-4 drop-shadow-lg">
+          Welcome to <span className="text-accent">WhyteOwl</span>
+        </h1>
+        <p className="text-xl md:text-2xl text-textSecondary max-w-3xl mx-auto leading-relaxed">
+          Elevate your ride with premium wheels and bodywork. Find the perfect parts for your vehicle customization journey.
+        </p>
+      </div>
+
+      {/* Main Options */}
+      <div className="flex flex-col items-center justify-center min-h-[50vh] relative" aria-label="Main home page options">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-accent/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-accent/5 rounded-full blur-2xl"></div>
+        </div>
+        
         {loading ? (
           <div className="flex items-center justify-center h-32">
             <span className="animate-pulse text-xl text-textSecondary">Loading...</span>
@@ -45,17 +63,32 @@ export default function Home() {
         ) : options.length === 0 ? (
           <div className="text-gray-400 text-center">No options available.</div>
         ) : (
-          <div className="flex flex-col sm:flex-row gap-10 w-full max-w-2xl justify-center mx-auto">
+          <div className="flex flex-col sm:flex-row gap-8 w-full max-w-4xl justify-center mx-auto relative z-10">
             {options.map((opt, i) => (
               <Link
                 key={opt.href}
                 href={opt.href}
-                className="flex-1 group bg-surface text-textPrimary border-2 border-border shadow-xl-glass rounded-2xl px-10 py-16 flex flex-col items-center justify-center text-center transition-all duration-200 hover:bg-accent hover:text-textPrimary hover:scale-105 hover:shadow-2xl animate-fade-in"
+                className="flex-1 group bg-gradient-to-br from-surface to-surfaceElevated text-textPrimary border border-border/50 shadow-xl-glass rounded-3xl px-8 py-12 flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-accent hover:shadow-2xl hover:shadow-accent/20 hover:scale-105 hover:-translate-y-2 animate-fade-in relative overflow-hidden"
                 aria-label={opt.ariaLabel}
                 tabIndex={0}
               >
-                {opt.icon}
-                <span className="text-3xl font-heading font-bold group-hover:text-textPrimary">{opt.label}</span>
+                {/* Card background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Icon with enhanced styling */}
+                <div className="relative z-10 mb-6 p-4 rounded-2xl bg-accent/10 group-hover:bg-accent/20 transition-colors duration-300">
+                  {opt.icon}
+                </div>
+                
+                {/* Label with better typography */}
+                <span className="text-2xl md:text-3xl font-heading font-bold relative z-10 group-hover:text-accent transition-colors duration-300">
+                  {opt.label}
+                </span>
+                
+                {/* Subtle description */}
+                <span className="text-sm text-textSecondary mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 relative z-10">
+                  {opt.href === '/wheels' ? 'Premium wheel selection' : 'Bodywork & styling parts'}
+                </span>
               </Link>
             ))}
           </div>

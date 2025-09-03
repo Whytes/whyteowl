@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaCarSide } from 'react-icons/fa';
+import { GiCarWheel } from 'react-icons/gi';
 
 const wheelCategories = [
   { name: 'Tuner', slug: 'tuner' },
@@ -15,7 +15,7 @@ export default function Wheels() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {wheelCategories.map(cat => (
           <Link key={cat.slug} href={`/wheels/${cat.slug}`} className="group block bg-surface text-textPrimary border-2 border-transparent shadow-card rounded-xl p-8 text-center font-medium transition-all duration-200 hover:scale-105 hover:shadow-xl-glass hover:border-accent hover:bg-accent">
-            <FaCarSide className="mx-auto mb-4 text-4xl text-accent group-hover:rotate-12 transition-transform" />
+            <GiCarWheel className="mx-auto mb-4 text-4xl text-accent group-hover:rotate-12 transition-transform" />
             <span className="text-2xl font-heading font-bold group-hover:text-textPrimary">{cat.name}</span>
           </Link>
         ))}

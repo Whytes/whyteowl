@@ -5,10 +5,21 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {
+  extend: {
       fontFamily: {
-        heading: ['"Roboto Slab"', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
+        body: ['Lato', 'sans-serif'],
+      },
+      animation: {
+        drive: 'drive 0.5s cubic-bezier(0.4,0.0,0.2,1)',
+      },
+      keyframes: {
+        drive: {
+          '0%': { transform: 'translateX(0)' },
+          '30%': { transform: 'translateX(10px)' },
+          '60%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(0)' },
+        },
       },
       colors: {
         // Main background
