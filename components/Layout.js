@@ -111,9 +111,7 @@ export default function Layout({ children }) {
       </header>
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8">{children}</main>
       <footer className="bg-surfaceElevated text-textSecondary text-center py-6 mt-8 shadow-inner rounded-t-2xl border-t border-border">
-        <span className="font-heading text-lg">&copy; {new Date().getFullYear()} WhyteOwl</span>
-        <span className="mx-2">|</span>
-        <span className="text-sm">Built for car enthusiasts & mechanics. Contact: <a href="mailto:info@whyteowl.com" className="underline hover:text-accent">info@whyteowl.com</a></span>
+  {/* Footer removed as requested */}
       </footer>
     </div>
   );

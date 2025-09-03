@@ -93,11 +93,11 @@ export default function ModelPage() {
           <section className="md:w-64 bg-gray-700 p-4 flex flex-col items-center">
             <h3 className="font-heading font-semibold mb-4 text-white text-base text-center">Options</h3>
             {selectedPart ? (
-              <div className="grid grid-cols-3 gap-2 w-full justify-items-center">
+              <div className="grid grid-cols-3 gap-4 w-full justify-items-center">
                 {selectedPart.options.map((option, index) => (
                   <button
                     key={option.slug}
-                    className={`group aspect-square rounded-lg font-bold text-sm transition-all duration-200 hover:scale-105 hover:shadow-lg hover:border-accent border border-transparent focus:outline-none focus:ring-1 focus:ring-accent/60 flex items-center justify-center ${selectedOption?.slug === option.slug ? 'bg-accent text-white shadow-lg border-accent' : 'text-white bg-gray-600 hover:bg-gray-500 border-gray-500'}`}
+                    className={`group aspect-square rounded-lg font-bold text-xl min-w-[48px] min-h-[48px] p-4 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:border-accent border border-transparent focus:outline-none focus:ring-2 focus:ring-accent/60 flex items-center justify-center ${selectedOption?.slug === option.slug ? 'bg-accent text-white shadow-lg border-accent' : 'text-white bg-gray-600 hover:bg-gray-500 border-gray-500'}`}
                     onClick={() => handleOptionClick(option)}
                   >
                     {index + 1}
