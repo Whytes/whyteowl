@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Slab:wght@700;900&display=swap');
+@import "tailwindcss";
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  /* Cohesive dark theme background */
+  background: #0f1419;
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in {
+  animation: fade-in 0.18s ease;
+}

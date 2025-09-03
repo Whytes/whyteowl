@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Tuner",
+    "slug": "tuner",
+    "images": ["/public/wheels/tuner1.jpg", "/public/wheels/tuner2.jpg"]
+  },
+  {
+    "name": "Sport",
+    "slug": "sport",
+    "images": ["/public/wheels/sport1.jpg", "/public/wheels/sport2.jpg"]
+  },
+  {
+    "name": "Street",
+    "slug": "street",
+    "images": ["/public/wheels/street1.jpg", "/public/wheels/street2.jpg"]
+  },
+  {
+    "name": "BennysOG",
+    "slug": "bennysog",
+    "images": ["/public/wheels/bennysog1.jpg", "/public/wheels/bennysog2.jpg"]
+  }
+]

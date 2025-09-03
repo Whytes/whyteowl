@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Rear Spoiler A",
+    "category": "Spoiler",
+    "image": "/images/spoiler-a.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Front Bumper X",
+    "category": "Bodywork",
+    "image": "/images/front-bumper-x.jpg"
+  }
+]

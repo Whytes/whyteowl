@@ -1,0 +1,207 @@
+[
+  {
+    "category": "local",
+    "types": [
+      {
+        "type": "sports",
+        "models": [
+          {
+            "name": "65' Mustang",
+            "slug": "65-mustang",
+            "parts": [
+              {
+                "name": "Spoilers",
+                "slug": "spoilers",
+                "options": [
+                  { "name": "Classic Ducktail", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "GT Wing", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Racing Spoiler", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Fenders",
+                "slug": "fenders",
+                "options": [
+                  { "name": "Wide Body Kit", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Flared Fenders", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Front Bumper",
+                "slug": "front-bumper",
+                "options": [
+                  { "name": "Shelby Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Racing Bumper", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Custom Grille", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Chevrolet Camaro",
+            "slug": "chevrolet-camaro",
+            "parts": [
+              {
+                "name": "Hood",
+                "slug": "hood",
+                "options": [
+                  { "name": "SS Hood", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Carbon Fiber", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Side Skirts",
+                "slug": "side-skirts",
+                "options": [
+                  { "name": "Z28 Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Ground Effects", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "suv",
+        "models": [
+          {
+            "name": "Ford F-150",
+            "slug": "ford-f150",
+            "parts": [
+              {
+                "name": "Bumpers",
+                "slug": "bumpers",
+                "options": [
+                  { "name": "Raptor Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Heavy Duty", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Chrome Package", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Running Boards",
+                "slug": "running-boards",
+                "options": [
+                  { "name": "Power Steps", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Tube Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "imports",
+    "types": [
+      {
+        "type": "sports",
+        "models": [
+          {
+            "name": "Porsche 911",
+            "slug": "porsche-911",
+            "parts": [
+              {
+                "name": "Rear Bumper",
+                "slug": "rear-bumper",
+                "options": [
+                  { "name": "GT3 Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Turbo S Diffuser", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Carrera S", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Side Skirts",
+                "slug": "side-skirts",
+                "options": [
+                  { "name": "Aerokit", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Carbon Fiber", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Wing",
+                "slug": "wing",
+                "options": [
+                  { "name": "GT3 RS Wing", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Spoiler Delete", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Civic Type R",
+            "slug": "civic-type-r",
+            "parts": [
+              {
+                "name": "Hood",
+                "slug": "hood",
+                "options": [
+                  { "name": "Vented Hood", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Carbon Fiber", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Front Lip",
+                "slug": "front-lip",
+                "options": [
+                  { "name": "Type R Lip", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Splitter", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Canards", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "super",
+        "models": [
+          {
+            "name": "Ferrari 488",
+            "slug": "ferrari-488",
+            "parts": [
+              {
+                "name": "Wing",
+                "slug": "wing",
+                "options": [
+                  { "name": "Pista Wing", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "GTB Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Diffuser",
+                "slug": "diffuser",
+                "options": [
+                  { "name": "Carbon Diffuser", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Track Spec", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Lamborghini Huracán",
+            "slug": "lamborghini-huracan",
+            "parts": [
+              {
+                "name": "Front Splitter",
+                "slug": "front-splitter",
+                "options": [
+                  { "name": "Performante", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "EVO Style", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              },
+              {
+                "name": "Side Vents",
+                "slug": "side-vents",
+                "options": [
+                  { "name": "Carbon Vents", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" },
+                  { "name": "Racing Vents", "image": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
