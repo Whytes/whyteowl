@@ -1,12 +1,23 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap'); */
 @import "tailwindcss";
 
+:root {
+  /* Color Variables */
+  --background: #0f1419;
+  --surface: #1a1f26;
+  --surface-elevated: #232935;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b7c3;
+  --accent: #00d4ff;
+  --border: #374151;
+}
+
 html, body {
   font-family: 'Lato', sans-serif;
   min-height: 100vh;
   /* Cohesive dark theme background */
-  background: #0f1419;
-  color: #ffffff;
+  background: var(--background);
+  color: var(--text-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {

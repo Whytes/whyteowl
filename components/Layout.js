@@ -18,17 +18,13 @@ const wheelCategories = [
 ];
 
 const bodyworkCategories = [
-  { name: 'Local', slug: 'local' },
   { name: 'Imports', slug: 'imports' },
 ];
 
 function Logo() {
   return (
     <span className="inline-flex items-center mr-2">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="mr-1">
-        <circle cx="16" cy="16" r="14" fill="#1e293b" stroke="#ff7e1b" strokeWidth="3" />
-        <path d="M10 16a6 6 0 1 1 12 0 6 6 0 0 1-12 0zm6-8v4m0 12v-4m8-4h-4m-12 0h4m7.07-7.07l-2.83 2.83m0 8.48l2.83 2.83m8.48-8.48l-2.83 2.83m-8.48-8.48l2.83 2.83" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-      </svg>
+      <img src="https://res.cloudinary.com/daim8phol/image/upload/v1757006104/ChatGPT_Image_Sep_4_2025_01_13_59_PM_uuo9df.png" width="36" height="36" className="mr-1" alt="WhyteOwl Logo" />
       <span className="font-heading text-2xl font-extrabold tracking-wide text-textPrimary">WhyteOwl</span>
     </span>
   );
@@ -41,9 +37,9 @@ export default function Layout({ children }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <header className="sticky top-0 z-30 px-8 py-4 flex items-baseline justify-between relative">
-        <div className="absolute inset-0 bg-surface/80 backdrop-blur-xl shadow-sm border-b border-border" style={{clipPath: 'polygon(0 0, 40% 0, 30% 100%, 0 100%)', boxShadow: '2px 0 0 0 white'}}></div>
-        <div className="relative z-10 flex items-center space-x-4">
+      <header className="sticky top-0 z-30 px-8 py-4 flex items-baseline justify-between relative pointer-events-none">
+        <div className="absolute inset-0 bg-surface/80 backdrop-blur-xl shadow-sm border-b border-border pointer-events-auto" style={{clipPath: 'polygon(0 0, 40% 0, 30% 100%, 0 100%)', boxShadow: '2px 0 0 0 white'}}></div>
+        <div className="relative z-10 flex items-center space-x-4 pointer-events-auto">
           <Link href="/" className="hover:opacity-90">
             <Logo />
           </Link>

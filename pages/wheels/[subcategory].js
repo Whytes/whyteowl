@@ -14,6 +14,7 @@ export default function WheelSubcategory() {
   const [panY, setPanY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [minZoom, setMinZoom] = useState(0.5);
   const [currentIndex, setCurrentIndex] = useState(0);
   const imgRef = useRef(null);
 
@@ -78,7 +79,7 @@ export default function WheelSubcategory() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (!selectedImage || zoom > 1) return;
+      if (!selectedImage || zoom > minZoom) return;
       if (e.key === 'ArrowRight') {
         nextImage();
       } else if (e.key === 'ArrowLeft') {
@@ -89,13 +90,13 @@ export default function WheelSubcategory() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, currentIndex, zoom]);
+  }, [selectedImage, currentIndex, zoom, minZoom]);
 
   const handleWheel = (e) => {
     e.preventDefault();
-    const newZoom = Math.max(1, zoom + e.deltaY * -0.01);
+    const newZoom = Math.max(minZoom, Math.min(1, zoom + e.deltaY * -0.01));
     setZoom(newZoom);
-    if (newZoom === 1) {
+    if (newZoom <= minZoom) {
       setPanX(0);
       setPanY(0);
     }
@@ -119,7 +120,7 @@ export default function WheelSubcategory() {
   };
 
   const nextImage = () => {
-    if (zoom > 1) return;
+    if (zoom > minZoom) return;
     const nextIndex = (currentIndex + 1) % images.length;
     setCurrentIndex(nextIndex);
     setSelectedImage(images[nextIndex]);
@@ -129,7 +130,7 @@ export default function WheelSubcategory() {
   };
 
   const prevImage = () => {
-    if (zoom > 1) return;
+    if (zoom > minZoom) return;
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     setCurrentIndex(prevIndex);
     setSelectedImage(images[prevIndex]);
@@ -140,7 +141,7 @@ export default function WheelSubcategory() {
 
   return (
     <div className="pt-16">
-      <h1 className="text-5xl font-heading font-bold mb-8 capitalize text-white drop-shadow-lg text-center">{subcategory} Wheels</h1>
+      <h1 className="text-5xl font-heading font-bold mb-8 capitalize text-white drop-shadow-lg text-center">{subcategory ? subcategory.replace('-', ' ') : ''} Wheels</h1>
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
           {[1,2,3,4,5,6].map(i => (
@@ -160,7 +161,7 @@ export default function WheelSubcategory() {
               <div key={i} className="flex flex-col items-center">
                 <div className="bg-white/80 backdrop-blur-xl border border-metal shadow-card rounded-2xl overflow-hidden group transition-all duration-200 hover:scale-105 hover:shadow-xl-glass hover:border-accent relative cursor-pointer" onClick={() => { setSelectedImage(img); setZoom(1); setPanX(0); setPanY(0); setCurrentIndex(images.indexOf(img)); }}>
                   <img src={img} alt={`${subcategory} wheel ${imageNumber}`} className="w-full h-56 object-cover group-hover:opacity-90 transition" />
-                  <span className="absolute top-2 left-2 bg-yellow-400 text-black px-2 py-1 rounded text-sm font-bold shadow-lg">{imageNumber}</span>
+                  <span className="absolute top-2 left-2 bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 text-white px-2 py-1 rounded text-sm font-bold shadow-lg border border-gray-500 backdrop-blur-sm" style={{textShadow: '0 0 6px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.4)'}}>{imageNumber}</span>
                 </div>
               </div>
             );
@@ -176,7 +177,7 @@ export default function WheelSubcategory() {
             ‹
           </button>
           <div
-            className="relative max-w-full max-h-full"
+            className="relative overflow-auto"
             style={{
               transform: `scale(${zoom}) translate(${panX}px, ${panY}px)`,
               cursor: zoom > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default',
@@ -187,14 +188,19 @@ export default function WheelSubcategory() {
               ref={imgRef}
               src={selectedImage}
               alt="Zoomed wheel"
-              className="max-w-full max-h-full object-contain select-none"
+              className="select-none"
+              onLoad={(e) => {
+                const calculatedMinZoom = window.innerHeight / e.target.naturalHeight;
+                setMinZoom(calculatedMinZoom);
+                setZoom(Math.min(1, calculatedMinZoom));
+              }}
               onWheel={handleWheel}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onClick={(e) => {
                 e.stopPropagation();
-                if (zoom > 1) return;
+                if (zoom > minZoom) return;
                 if (e.clientX > window.innerWidth / 2) {
                   nextImage();
                 } else {
@@ -203,7 +209,7 @@ export default function WheelSubcategory() {
               }}
               draggable="false"
             />
-            <span className="absolute top-2 left-2 bg-yellow-400 text-black px-2 py-1 rounded text-sm font-bold shadow-lg">
+            <span className="absolute top-2 left-2 bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 text-white px-4 py-3 rounded-lg text-xl font-bold shadow-2xl border border-gray-500 backdrop-blur-sm" style={{textShadow: '0 0 8px rgba(255,255,255,0.8), 0 0 16px rgba(255,255,255,0.4)'}}>
               {parseInt(selectedImage.split('/').pop().match(/\d+/)?.[0] || '0')}
             </span>
           </div>
