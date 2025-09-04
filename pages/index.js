@@ -49,7 +49,7 @@ const Home = () => {
       {/* Hero Section */}
       <div className="text-center py-12 px-4">
         <h1 className="text-5xl md:text-6xl font-heading font-black text-textPrimary mb-4 drop-shadow-lg">
-          Welcome to <span className="text-accent">WhyteOwl</span>
+          Welcome to <span className="text-accent">The Catalog</span>
         </h1>
         <p className="text-xl md:text-2xl text-textSecondary max-w-3xl mx-auto leading-relaxed">
           Elevate your ride with premium wheels and bodywork. Find the perfect parts for your vehicle customization journey.
