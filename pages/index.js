@@ -3,26 +3,32 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { FaCarSide, FaTools } from 'react-icons/fa';
 
-export default function Home() {
+const wheelIcon = <FaCarSide className="text-6xl text-accent mb-6 transition-transform drive-hover" aria-hidden="true" />;
+const bodyworkIcon = <FaTools className="text-6xl text-accent mb-6 group-hover:rotate-12 transition-transform" aria-hidden="true" />;
+
+const Home = () => {
+  console.log('Home component rendered');
+
   // Loading state simulation (replace with real data loading if needed)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [options, setOptions] = useState([
     {
       href: '/wheels',
-      icon: <FaCarSide className="text-6xl text-accent mb-6 transition-transform drive-hover" aria-hidden="true" />,
+      icon: wheelIcon,
       label: 'Wheels',
       ariaLabel: 'Go to Wheels page',
     },
     {
       href: '/bodywork',
-      icon: <FaTools className="text-6xl text-accent mb-6 group-hover:rotate-12 transition-transform" aria-hidden="true" />,
+      icon: bodyworkIcon,
       label: 'Bodywork',
       ariaLabel: 'Go to Bodywork page',
     },
   ]);
 
   useEffect(() => {
+    console.log('Home useEffect ran');
     // Simulate loading or error if needed
     // setLoading(true);
     // setTimeout(() => setLoading(false), 1000);
@@ -31,6 +37,10 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>WhyteOwl | Premium Car Customization</title>
+        <meta name="description" content="WhyteOwl - Discover premium wheels and bodywork parts for your vehicle. Quality components for car enthusiasts and mechanics." />
+      </Head>
       <Head>
         <title>WhyteOwl | Premium Car Customization</title>
         <meta name="description" content="WhyteOwl - Discover premium wheels and bodywork parts for your vehicle. Quality components for car enthusiasts and mechanics." />
@@ -96,4 +106,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

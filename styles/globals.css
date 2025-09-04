@@ -1,27 +1,4 @@
-.g.group:hover .drive-hover {
-  animation: drive 1s cubic-bezier(0.4,0.0,0.2,1) infinite;
-}
-@keyframes drive {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(2px); }
-  100% { transform: translateX(0); }
-}over {
-  animation: drive 1s cubic-bezier(0.4,0.0,0.2,1) infinite;
-}:hover .drive-hover {
-  animation: drive 1s cubic-bezier(0.4,0.0,0.2,1) infinite;
-}
-.drive-icon:hover {
-  animation: drive 1s cubic-bezier(0.4,0.0,0.2,1) infinite;
-}
-@keyframes drive {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(2px); }
-  100% { transform: translateX(0); }
-}
-.animate-drive {
-  animation: drive 1s cubic-bezier(0.4,0.0,0.2,1) infinite;
-}
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap'); */
 @import "tailwindcss";
 
 html, body {
@@ -42,4 +19,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-fade-in {
   animation: fade-in 0.18s ease;
+}
+
+@keyframes drive {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+.animate-drive {
+  animation: drive 1s cubic-bezier(0.4,0.0,0.2,1) infinite;
 }

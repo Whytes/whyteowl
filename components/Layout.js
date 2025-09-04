@@ -1,11 +1,20 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 
 const wheelCategories = [
-  { name: 'Tuner', slug: 'tuner' },
   { name: 'Sport', slug: 'sport' },
+  { name: 'High End', slug: 'high-end' },
+  { name: 'Tuner', slug: 'tuner' },
+  { name: 'Track', slug: 'track' },
+  { name: 'SUV', slug: 'suv' },
   { name: 'Street', slug: 'street' },
-  { name: 'BennysOG', slug: 'bennysog' },
+  { name: 'Off Road', slug: 'off-road' },
+  { name: 'Low Rider', slug: 'low-rider' },
+  { name: 'Muscle', slug: 'muscle' },
+  { name: 'Bike', slug: 'bike' },
+  { name: "Benny's OG", slug: 'bennys-og' },
+  { name: "Benny's Bespoke", slug: 'bennys-bespoke' },
 ];
 
 const bodyworkCategories = [
@@ -26,30 +35,33 @@ function Logo() {
 }
 
 export default function Layout({ children }) {
+  console.log('Layout component rendered');
   const router = useRouter();
+  const currentPath = useMemo(() => router.pathname, [router.pathname]);
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <header className="sticky top-0 z-30 bg-slate-900 shadow-xl-glass px-8 py-4 flex items-center justify-between border-b border-border">
-        <div className="flex items-center space-x-4">
+      <header className="sticky top-0 z-30 px-8 py-4 flex items-baseline justify-between relative">
+        <div className="absolute inset-0 bg-surface/80 backdrop-blur-xl shadow-sm border-b border-border" style={{clipPath: 'polygon(0 0, 40% 0, 30% 100%, 0 100%)', boxShadow: '2px 0 0 0 white'}}></div>
+        <div className="relative z-10 flex items-center space-x-4">
           <Link href="/" className="hover:opacity-90">
             <Logo />
           </Link>
-          <nav className="ml-8 flex space-x-6 relative items-center">
+          <nav className="ml-8 flex space-x-6 relative items-baseline mt-3">
             {/* Wheels Dropdown */}
             <div className="relative group pb-3">
               <Link
                 href="/wheels"
-                className={`font-medium px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent hover:text-textPrimary text-lg ${router.pathname.startsWith('/wheels') ? 'bg-accent text-textPrimary font-bold shadow-card' : 'text-textPrimary'}`}
+                className={`font-medium px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-lg ${currentPath.startsWith('/wheels') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
               >
                 Wheels
               </Link>
-              <div className="absolute left-0 mt-2 w-48 bg-slate-900 border border-slate-700 shadow-xl-glass rounded-xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+              <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
                 {wheelCategories.map(cat => (
                   <Link
                     key={cat.slug}
                     href={`/wheels/${cat.slug}`}
-                    className="block px-5 py-2 text-textPrimary hover:bg-accent hover:text-textPrimary font-medium transition-all rounded-lg hover:scale-105"
+                    className="block px-5 py-2 text-textPrimary hover:bg-accent/20 hover:text-accent font-medium transition-all rounded-lg hover:scale-105"
                   >
                     {cat.name}
                   </Link>
@@ -60,16 +72,16 @@ export default function Layout({ children }) {
             <div className="relative group pb-3">
               <Link
                 href="/bodywork"
-                className={`font-medium px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent hover:text-textPrimary text-lg ${router.pathname.startsWith('/bodywork') ? 'bg-accent text-textPrimary font-bold shadow-card' : 'text-textPrimary'}`}
+                className={`font-medium px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-lg ${currentPath.startsWith('/bodywork') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
               >
                 Bodywork
               </Link>
-              <div className="absolute left-0 mt-2 w-48 bg-slate-900 border border-slate-700 shadow-xl-glass rounded-xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+              <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
                 {bodyworkCategories.map(category => (
                   <Link
                     key={category.slug}
                     href={`/bodywork/${category.slug}`}
-                    className="block px-5 py-2 text-textPrimary hover:bg-accent hover:text-textPrimary font-medium transition-all rounded-lg hover:scale-105"
+                    className="block px-5 py-2 text-textPrimary hover:bg-accent/20 hover:text-accent font-medium transition-all rounded-lg hover:scale-105"
                   >
                     {category.name}
                   </Link>
@@ -79,8 +91,8 @@ export default function Layout({ children }) {
           </nav>
         </div>
       </header>
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8">{children}</main>
-      <footer className="bg-slate-900 text-textSecondary text-center py-6 mt-8 shadow-inner rounded-t-2xl border-t border-border">
+      <main className="flex-1 w-full px-8 py-8">{children}</main>
+      <footer className="bg-surface/80 backdrop-blur-xl text-textSecondary text-center py-6 mt-8 shadow-sm border-t border-border/50">
   {/* Footer removed as requested */}
       </footer>
     </div>
