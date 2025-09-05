@@ -110,23 +110,23 @@ export default function WheelSubcategory() {
         case 'd': // WASD navigation
         case 'l': // Vim-style navigation (HJKL)
           e.preventDefault();
-          if (zoom <= minZoom && !isTransitioning) nextImage();
+          if (zoom <= 1 && !isTransitioning) nextImage();
           break;
         case 'arrowleft':
         case 'a': // WASD navigation
         case 'h': // Vim-style navigation (HJKL)
           e.preventDefault();
-          if (zoom <= minZoom && !isTransitioning) prevImage();
+          if (zoom <= 1 && !isTransitioning) prevImage();
           break;
 
         // Additional shortcuts
         case ' ': // Space bar for next image
           e.preventDefault();
-          if (zoom <= minZoom && !isTransitioning) nextImage();
+          if (zoom <= 1 && !isTransitioning) nextImage();
           break;
         case 'backspace': // Backspace for previous image
           e.preventDefault();
-          if (zoom <= minZoom && !isTransitioning) prevImage();
+          if (zoom <= 1 && !isTransitioning) prevImage();
           break;
 
         // Escape to close modal
@@ -147,10 +147,10 @@ export default function WheelSubcategory() {
         case '9':
           e.preventDefault();
           const imageIndex = parseInt(e.key) - 1;
-          if (imageIndex < images.length && zoom <= minZoom) {
+          if (imageIndex < images.length && zoom <= 1) {
             setCurrentIndex(imageIndex);
             setSelectedImage(images[imageIndex]);
-            setZoom(minZoom);
+            setZoom(1);
             setPanX(0);
             setPanY(0);
             preloadNextImages(imageIndex, 3);
@@ -160,10 +160,10 @@ export default function WheelSubcategory() {
         // Home/End for first/last image
         case 'home':
           e.preventDefault();
-          if (zoom <= minZoom && images.length > 0) {
+          if (zoom <= 1 && images.length > 0) {
             setCurrentIndex(0);
             setSelectedImage(images[0]);
-            setZoom(minZoom);
+            setZoom(1);
             setPanX(0);
             setPanY(0);
             preloadNextImages(0, 3);
@@ -171,11 +171,11 @@ export default function WheelSubcategory() {
           break;
         case 'end':
           e.preventDefault();
-          if (zoom <= minZoom && images.length > 0) {
+          if (zoom <= 1 && images.length > 0) {
             const lastIndex = images.length - 1;
             setCurrentIndex(lastIndex);
             setSelectedImage(images[lastIndex]);
-            setZoom(minZoom);
+            setZoom(1);
             setPanX(0);
             setPanY(0);
             preloadNextImages(lastIndex, 3);
@@ -218,15 +218,14 @@ export default function WheelSubcategory() {
     const newPanX = e.clientX - dragStart.x;
     const newPanY = e.clientY - dragStart.y;
 
-    // Calculate pan boundaries to prevent panning beyond image edges
+    // Calculate pan boundaries to prevent panning beyond image edges when zoomed
     if (zoom > minZoom && imgRef.current) {
-      const imageRect = imgRef.current.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-
-      // Calculate how much the image extends beyond viewport when zoomed
-      const imageWidth = imageRect.width * zoom;
-      const imageHeight = imageRect.height * zoom;
+      
+      // Calculate how much the zoomed image extends beyond viewport
+      const imageWidth = viewportWidth * zoom;
+      const imageHeight = viewportHeight * zoom;
 
       // Maximum pan values (half the difference between zoomed image and viewport)
       const maxPanX = Math.max(0, (imageWidth - viewportWidth) / 2);
@@ -300,12 +299,11 @@ export default function WheelSubcategory() {
 
       // Apply pan boundaries
       if (imgRef.current) {
-        const imageRect = imgRef.current.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        const imageWidth = imageRect.width * zoom;
-        const imageHeight = imageRect.height * zoom;
+        const imageWidth = viewportWidth * zoom;
+        const imageHeight = viewportHeight * zoom;
 
         const maxPanX = Math.max(0, (imageWidth - viewportWidth) / 2);
         const maxPanY = Math.max(0, (imageHeight - viewportHeight) / 2);
@@ -565,7 +563,7 @@ export default function WheelSubcategory() {
                   onClick={() => { 
                     setSelectedImage(img); 
                     setImageLoading(true);
-                    setZoom(1); // This will be overridden by onLoad, but set a default
+                    setZoom(minZoom); // This will be overridden by onLoad, but set a default
                     setPanX(0); 
                     setPanY(0); 
                     setCurrentIndex(images.indexOf(img));
@@ -656,26 +654,21 @@ export default function WheelSubcategory() {
               height="600"
               onLoad={(e) => {
                 setImageLoading(false);
-                // Calculate zoom to fit both width and height (fullscreen) ensuring entire image is visible
-                // Account for browser UI elements like Firefox hotbar
-                const browserUISpace = 120; // Extra space for browser toolbar, address bar, etc.
-                const buttonSpace = 60; // Space for navigation buttons
-                const labelSpace = 40; // Space for the number label at top
-
-                // Available space accounting for all UI elements
-                const availableWidth = window.innerWidth - buttonSpace;
-                const availableHeight = window.innerHeight - browserUISpace - labelSpace;
-
-                // Use the displayed dimensions (800x600) for calculation
-                const displayWidth = 800;
-                const displayHeight = 600;
-
-                const heightRatio = availableHeight / displayHeight;
-                const widthRatio = availableWidth / displayWidth;
-                const fullscreenZoom = Math.min(heightRatio, widthRatio);
-
-                setMinZoom(fullscreenZoom);
-                setZoom(fullscreenZoom);
+                // Calculate zoom to fit image in full viewport
+                const img = e.target;
+                const imgWidth = img.naturalWidth;
+                const imgHeight = img.naturalHeight;
+                
+                // Use full viewport dimensions
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                const widthRatio = viewportWidth / imgWidth;
+                const heightRatio = viewportHeight / imgHeight;
+                const fitZoom = Math.min(widthRatio, heightRatio);
+                
+                setMinZoom(fitZoom);
+                setZoom(fitZoom);
               }}
               onWheel={handleWheel}
               onMouseDown={handleMouseDown}
