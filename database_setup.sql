@@ -45,7 +45,8 @@ SELECT
     CURRENT_TIMESTAMP
 FROM "User"
 WHERE "User"."role" = 'ADMIN'
-LIMIT 1
+LIMIT 1;
+
 -- Create Comments table
 CREATE TABLE IF NOT EXISTS "Comment" (
     "id" TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
