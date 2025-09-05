@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import LoginModal from '../../components/LoginModal'
+import UserName from '../../components/UserName'
 
 export default function PostDetail() {
   const { data: session, status } = useSession()
@@ -133,7 +134,7 @@ export default function PostDetail() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-textPrimary mb-4">{post.title}</h1>
           <div className="flex items-center space-x-4 text-sm text-textSecondary mb-6">
-            <span>Posted by <span className="text-accent">{post.author?.name || 'Anonymous'}</span></span>
+            <span>Posted by <UserName user={post.author} /></span>
             <span>•</span>
             <span>{formatDate(post.createdAt)}</span>
             <span>•</span>
@@ -163,7 +164,7 @@ export default function PostDetail() {
                   <div className="flex items-start space-x-4">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-accent font-medium">{comment.author?.name || 'Anonymous'}</span>
+                        <UserName user={comment.author} className="font-medium" />
                         <span className="text-textSecondary text-sm">{formatDate(comment.createdAt)}</span>
                       </div>
                       <p className="text-textPrimary">{comment.content}</p>

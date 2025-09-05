@@ -8,55 +8,22 @@ export default function Showcase() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-gray-800/50 rounded-xl overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <span className="text-white text-lg font-semibold">Project Image</span>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-textPrimary mb-2">1967 Mustang GT</h3>
-              <p className="text-textSecondary mb-4">Complete restoration with modern performance upgrades</p>
-              <div className="flex items-center justify-between">
-                <span className="text-accent font-medium">by ClassicResto</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-textSecondary text-sm">❤️ 24</span>
-                  <span className="text-textSecondary text-sm">💬 8</span>
-                </div>
-              </div>
-            </div>
+          <div className="bg-gray-800/50 rounded-xl p-8 text-center">
+            <div className="text-6xl mb-4">🚗</div>
+            <h3 className="text-xl font-semibold text-textPrimary mb-2">Coming Soon</h3>
+            <p className="text-textSecondary">Amazing car builds and modifications from our community will be showcased here.</p>
           </div>
 
-          <div className="bg-gray-800/50 rounded-xl overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center">
-              <span className="text-white text-lg font-semibold">Project Image</span>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-textPrimary mb-2">BMW M3 Track Build</h3>
-              <p className="text-textSecondary mb-4">Circuit-ready modifications and suspension upgrades</p>
-              <div className="flex items-center justify-between">
-                <span className="text-accent font-medium">by TrackMaster</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-textSecondary text-sm">❤️ 31</span>
-                  <span className="text-textSecondary text-sm">💬 12</span>
-                </div>
-              </div>
-            </div>
+          <div className="bg-gray-800/50 rounded-xl p-8 text-center">
+            <div className="text-6xl mb-4">🔧</div>
+            <h3 className="text-xl font-semibold text-textPrimary mb-2">Share Your Projects</h3>
+            <p className="text-textSecondary">Have a build you're proud of? Upload and share with fellow enthusiasts.</p>
           </div>
 
-          <div className="bg-gray-800/50 rounded-xl overflow-hidden">
-            <div className="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-              <span className="text-white text-lg font-semibold">Project Image</span>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-textPrimary mb-2">Tesla Model 3 Custom</h3>
-              <p className="text-textSecondary mb-4">Unique wrap and interior modifications</p>
-              <div className="flex items-center justify-between">
-                <span className="text-accent font-medium">by EVCustoms</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-textSecondary text-sm">❤️ 18</span>
-                  <span className="text-textSecondary text-sm">💬 5</span>
-                </div>
-              </div>
-            </div>
+          <div className="bg-gray-800/50 rounded-xl p-8 text-center">
+            <div className="text-6xl mb-4">🏆</div>
+            <h3 className="text-xl font-semibold text-textPrimary mb-2">Community Recognition</h3>
+            <p className="text-textSecondary">Get feedback and recognition for your automotive projects.</p>
           </div>
         </div>
 

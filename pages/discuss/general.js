@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import LoginModal from '../../components/LoginModal'
+import UserName from '../../components/UserName'
 
 export default function GeneralDiscussion() {
   const { data: session, status } = useSession()
@@ -129,7 +130,7 @@ export default function GeneralDiscussion() {
                           <h3 className="text-xl font-medium text-accent mb-2 hover:text-accent/80">{post.title}</h3>
                           <p className="text-textSecondary mb-3 line-clamp-3">{post.content}</p>
                           <div className="flex items-center space-x-4 text-sm text-textSecondary">
-                            <span>Started by <span className="text-accent">{post.author?.name || 'Anonymous'}</span></span>
+                            <span>Started by <UserName user={post.author} /></span>
                             <span>•</span>
                             <span>{formatDate(post.createdAt)}</span>
                             <span>•</span>

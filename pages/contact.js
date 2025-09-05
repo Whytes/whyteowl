@@ -77,15 +77,6 @@ export default function Contact() {
                     <p className="text-textSecondary">Join our Discord server</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="bg-accent/20 w-10 h-10 rounded-full flex items-center justify-center">
-                    <span className="text-accent">🐦</span>
-                  </div>
-                  <div>
-                    <h3 className="text-textPrimary font-medium">Twitter</h3>
-                    <p className="text-textSecondary">@WhyteOwlCars</p>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -95,14 +86,6 @@ export default function Contact() {
                 <div>
                   <h3 className="text-accent font-medium mb-1">How do I reset my password?</h3>
                   <p className="text-textSecondary text-sm">Use the "Forgot Password" link on the sign-in page.</p>
-                </div>
-                <div>
-                  <h3 className="text-accent font-medium mb-1">How do I report a bug?</h3>
-                  <p className="text-textSecondary text-sm">Use the contact form above or join our Discord.</p>
-                </div>
-                <div>
-                  <h3 className="text-accent font-medium mb-1">Can I suggest new features?</h3>
-                  <p className="text-textSecondary text-sm">Absolutely! Visit our Suggest page to share your ideas.</p>
                 </div>
               </div>
             </div>

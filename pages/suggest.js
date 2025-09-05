@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 import LoginModal from '../components/LoginModal'
+import UserName from '../components/UserName'
 
 export default function Suggest() {
   const { data: session, status } = useSession()
@@ -207,7 +208,7 @@ export default function Suggest() {
                       <h3 className="text-lg font-medium text-accent mb-1">{suggestion.title}</h3>
                       <p className="text-textSecondary text-sm mb-2">{suggestion.description}</p>
                       <div className="flex items-center space-x-4 text-sm">
-                        <span className="text-textSecondary">by {suggestion.author?.name || 'Anonymous'}</span>
+                        <span className="text-textSecondary">by <UserName user={suggestion.author} /></span>
                         <span className="text-textSecondary">•</span>
                         <span className="capitalize">{suggestion.category}</span>
                         <span className="text-textSecondary">•</span>
