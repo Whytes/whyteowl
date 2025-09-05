@@ -147,7 +147,7 @@ export default function PostDetail() {
         <div className="mb-6">
           <button
             onClick={handleAddComment}
-            className="bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors border-2 border-green-400 shadow-lg"
           >
             Add Comment
           </button>
@@ -223,7 +223,7 @@ export default function PostDetail() {
                 </button>
                 <button
                   type="submit"
-                  className="bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-colors border-2 border-green-400 shadow-lg"
                 >
                   Post Comment
                 </button>

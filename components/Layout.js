@@ -155,7 +155,13 @@ export default function Layout({ children }) {
             <div className="text-textSecondary text-xl font-semibold">Loading...</div>
           ) : session ? (
             <div className="flex items-center space-x-1">
-              <span className="text-textPrimary text-xl font-semibold">Welcome, {formatWelcomeName(session.user.name)}</span>
+              <span className="text-textPrimary text-xl font-semibold">Welcome, </span>
+              <Link 
+                href="/profile"
+                className="text-accent hover:text-accent/80 text-xl font-semibold transition-colors"
+              >
+                {formatWelcomeName(session.user.name)}
+              </Link>
               <button
                 onClick={() => signOut()}
                 className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-all duration-300 text-xl font-semibold hover:scale-105 hover:shadow-lg hover:shadow-accent/30 transform hover:ring-2 hover:ring-accent/30"

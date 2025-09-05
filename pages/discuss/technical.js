@@ -95,7 +95,7 @@ export default function TechnicalQuestions() {
           </div>
           <button
             onClick={handleCreatePost}
-            className="bg-accent hover:bg-accent/80 text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg"
+            className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-medium transition-colors text-lg border-2 border-green-400 shadow-lg"
           >
             Create Post
           </button>
