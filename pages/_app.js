@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import Layout from '../components/Layout';
 import Head from 'next/head';
 import { useEffect } from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -53,6 +54,7 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <SpeedInsights />
     </>
   );
 }
