@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { FaCarSide, FaTools } from 'react-icons/fa';
+import { Logo } from '../components/Layout';
 
 const wheelIcon = <FaCarSide className="text-6xl text-accent mb-6 transition-transform drive-hover" aria-hidden="true" />;
 const bodyworkIcon = <FaTools className="text-6xl text-accent mb-6 group-hover:rotate-12 transition-transform" aria-hidden="true" />;
@@ -49,11 +50,11 @@ const Home = () => {
       {/* Hero Section */}
       <div className="text-center py-12 px-4">
         <h1 className="text-5xl md:text-6xl font-heading font-black text-textPrimary mb-4 drop-shadow-lg">
-          Welcome to <span className="text-accent">The Catalog</span>
+          Welcome to
         </h1>
-        <p className="text-xl md:text-2xl text-textSecondary max-w-3xl mx-auto leading-relaxed">
-          Elevate your ride with premium wheels and bodywork. Find the perfect parts for your vehicle customization journey.
-        </p>
+        <div className="flex justify-center items-center mb-4">
+          <Logo size="large" />
+        </div>
       </div>
 
       {/* Main Options */}

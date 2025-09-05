@@ -21,14 +21,24 @@ const bodyworkCategories = [
   { name: 'Imports', slug: 'imports' },
 ];
 
-function Logo() {
+function Logo({ size = "default" }) {
+  const imageSize = size === "large" ? "64" : "48";
+  const theTextSize = size === "large" ? "text-3xl" : "text-lg";
+  const catalogTextSize = size === "large" ? "text-6xl" : "text-4xl";
+  const theLeftPosition = size === "large" ? "left-[39px]" : "left-[22px]";
+  
   return (
     <span className="inline-flex items-center mr-2">
-      <img src="https://res.cloudinary.com/daim8phol/image/upload/v1757006104/ChatGPT_Image_Sep_4_2025_01_13_59_PM_uuo9df.png" width="36" height="36" className="mr-1" alt="WhyteOwl Logo" />
-      <span className="font-heading text-2xl font-extrabold tracking-wide text-textPrimary">WhyteOwl</span>
+      <img src="https://res.cloudinary.com/daim8phol/image/upload/v1757006104/ChatGPT_Image_Sep_4_2025_01_13_59_PM_uuo9df.png" width={imageSize} height={imageSize} className="mr-1" alt="WhyteOwl Logo" />
+      <div className="relative flex flex-col items-start">
+        <span className={`${theTextSize} font-semibold text-orange-500 leading-tight absolute top-0 ${theLeftPosition} z-10`}>The</span>
+        <span className={`font-heading ${catalogTextSize} font-extrabold tracking-wide text-textPrimary leading-tight pt-1`}>Catalog</span>
+      </div>
     </span>
   );
 }
+
+export { Logo };
 
 export default function Layout({ children }) {
   console.log('Layout component rendered');
