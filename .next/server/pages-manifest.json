@@ -4,5 +4,5 @@
   "/_document": "pages/_document.js",
   "/auth/signin": "pages/auth/signin.js",
   "/wheels": "pages/wheels.js",
-  "/bodywork": "pages/bodywork.js"
+  "/suggest": "pages/suggest.js"
 }

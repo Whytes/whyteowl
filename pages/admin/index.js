@@ -5,24 +5,53 @@ export default function AdminDashboard() {
   const { data: session, status } = useSession()
   const [stats, setStats] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [logs, setLogs] = useState([])
+
+  // Add logging function
+  const addLog = (message, type = 'info') => {
+    const timestamp = new Date().toLocaleTimeString()
+    const logEntry = `[${timestamp}] ${type.toUpperCase()}: ${message}`
+    console.log(logEntry)
+    setLogs(prev => [...prev, logEntry])
+  }
 
   useEffect(() => {
+    addLog('AdminDashboard component mounted')
+    addLog(`Session status: ${status}`)
+    if (session) {
+      addLog(`User: ${session.user?.name} (${session.user?.email})`)
+      addLog(`User role: ${session.user?.role}`)
+    }
+
     if (session?.user.role === 'ADMIN') {
+      addLog('User is admin, fetching stats...')
       fetchAdminStats()
+    } else if (session) {
+      addLog('User is not admin, access denied')
     }
   }, [session])
 
   const fetchAdminStats = async () => {
+    addLog('Starting fetchAdminStats...')
     try {
       const response = await fetch('/api/admin/stats')
+      addLog(`API response status: ${response.status}`)
+
       if (response.ok) {
         const data = await response.json()
+        addLog('Successfully fetched admin stats')
+        addLog(`Stats data: ${JSON.stringify(data, null, 2)}`)
         setStats(data)
+      } else {
+        const errorText = await response.text()
+        addLog(`API error: ${response.status} - ${errorText}`, 'error')
       }
     } catch (error) {
+      addLog(`Network error fetching admin stats: ${error.message}`, 'error')
       console.error('Failed to fetch admin stats:', error)
     } finally {
       setLoading(false)
+      addLog('fetchAdminStats completed')
     }
   }
 
@@ -125,6 +154,41 @@ export default function AdminDashboard() {
               <p className="text-textSecondary">User ID:</p>
               <p className="text-textPrimary font-mono text-sm">{session.user.id}</p>
             </div>
+          </div>
+        </div>
+
+        {/* Debug Logs */}
+        <div className="mt-8 bg-slate-900/95 backdrop-blur-xl border border-border rounded-2xl p-6">
+          <h2 className="text-xl font-semibold text-textPrimary mb-4">Debug Logs</h2>
+          <div className="bg-black/50 rounded-lg p-4 max-h-96 overflow-y-auto">
+            <div className="space-y-1 font-mono text-sm">
+              {logs.map((log, index) => (
+                <div key={index} className={`${
+                  log.includes('ERROR') ? 'text-red-400' :
+                  log.includes('WARN') ? 'text-yellow-400' :
+                  'text-green-400'
+                }`}>
+                  {log}
+                </div>
+              ))}
+            </div>
+            {logs.length === 0 && (
+              <p className="text-textSecondary text-sm">No logs yet...</p>
+            )}
+          </div>
+          <div className="mt-4 flex gap-2">
+            <button
+              onClick={() => setLogs([])}
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm"
+            >
+              Clear Logs
+            </button>
+            <button
+              onClick={() => addLog('Manual test log entry')}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm"
+            >
+              Add Test Log
+            </button>
           </div>
         </div>
       </div>
