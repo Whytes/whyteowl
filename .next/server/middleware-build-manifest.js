@@ -20,6 +20,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/bodywork": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/bodywork.js"
+    ],
     "/wheels": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
