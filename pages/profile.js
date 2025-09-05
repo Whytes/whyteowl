@@ -36,14 +36,14 @@ export default function Profile() {
 
   // Initialize form data when session loads
   React.useEffect(() => {
-    if (session?.user) {
+    if (session?.user && generalForm.name === '' && generalForm.email === '') {
       setGeneralForm({
         name: session.user.name || '',
         email: session.user.email || '',
         bio: ''
       })
     }
-  }, [session])
+  }, [session?.user?.id]) // Only run when user ID changes (initial load)
 
   // Redirect if not authenticated
   if (status === 'loading') {
@@ -97,6 +97,7 @@ export default function Profile() {
             email: generalForm.email,
           }
         })
+        // Don't reset form - keep the current values
       } else {
         showMessage(data.error || 'Failed to update profile', 'error')
       }
@@ -211,7 +212,7 @@ export default function Profile() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-accent hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg border border-green-500"
                 >
                   {isLoading ? 'Updating...' : 'Save Changes'}
                 </button>
@@ -277,7 +278,7 @@ export default function Profile() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-accent hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg border border-green-500"
                 >
                   {isLoading ? 'Updating...' : 'Update Password'}
                 </button>
