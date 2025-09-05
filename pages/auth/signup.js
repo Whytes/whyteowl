@@ -45,7 +45,7 @@ export default function SignUp() {
       } else {
         // Auto sign in after successful registration
         const result = await signIn('credentials', {
-          email: formData.email,
+          identifier: formData.email, // Use identifier instead of email
           password: formData.password,
           redirect: false
         })

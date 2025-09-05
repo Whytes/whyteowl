@@ -27,6 +27,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/auth/signin.js"
+    ],
+    "/wheels": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/wheels.js"
     ]
   },
   "ampFirstPages": []

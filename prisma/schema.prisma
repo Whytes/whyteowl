@@ -7,6 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  USER
+  ADMIN
+  MODERATOR
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -40,12 +52,15 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
-  role          String    @default("user")
+  role          UserRole  @default(USER)
+  isActive      Boolean   @default(true)
+  lastLogin     DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
   favorites     Favorite[]
+  auditLogs     AuditLog[]
 }
 
 model VerificationToken {
@@ -65,4 +80,25 @@ model Favorite {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, itemType, itemId])
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String
+  entityType  String
+  entityId    String?
+  details     Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model SystemSettings {
+  id    String @id @default(cuid())
+  key   String @unique
+  value Json
+  updatedAt DateTime @updatedAt
+  updatedBy String?
 }

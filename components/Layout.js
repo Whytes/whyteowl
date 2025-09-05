@@ -47,6 +47,21 @@ export default function Layout({ children }) {
   const currentPath = useMemo(() => router.pathname, [router.pathname]);
   const { data: session, status } = useSession();
 
+  // Helper function to format the welcome name
+  const formatWelcomeName = (fullName) => {
+    if (!fullName) return 'User';
+    
+    // Get first name (split by space and take first part)
+    const firstName = fullName.split(' ')[0];
+    
+    // Truncate if longer than 12 characters
+    if (firstName.length > 12) {
+      return firstName.substring(0, 12) + '...';
+    }
+    
+    return firstName;
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="sticky top-0 z-30 px-8 py-4 flex items-baseline justify-between relative pointer-events-none">
@@ -61,16 +76,16 @@ export default function Layout({ children }) {
             <div className="relative group pb-3">
               <Link
                 href="/wheels"
-                className={`font-semibold px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-xl ${currentPath.startsWith('/wheels') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
+                className={`font-semibold px-3 py-2 rounded-xl transition-all duration-300 hover:bg-accent/20 hover:text-accent hover:scale-105 hover:shadow-lg hover:shadow-accent/20 text-xl transform hover:ring-2 hover:ring-accent/30 ${currentPath.startsWith('/wheels') ? 'bg-accent/10 text-accent font-bold scale-105' : 'text-textPrimary'}`}
               >
                 Wheels
               </Link>
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+              <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto transform group-hover:translate-y-1 group-hover:shadow-2xl group-hover:shadow-accent/10">
                 {wheelCategories.map(cat => (
                   <Link
                     key={cat.slug}
                     href={`/wheels/${cat.slug}`}
-                    className="block px-5 py-2 text-textPrimary hover:bg-accent/20 hover:text-accent font-medium transition-all rounded-lg hover:scale-105"
+                    className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20"
                   >
                     {cat.name}
                   </Link>
@@ -81,16 +96,16 @@ export default function Layout({ children }) {
             <div className="relative group pb-3">
               <Link
                 href="/bodywork"
-                className={`font-semibold px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-xl ${currentPath.startsWith('/bodywork') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
+                className={`font-semibold px-3 py-2 rounded-xl transition-all duration-300 hover:bg-accent/20 hover:text-accent hover:scale-105 hover:shadow-lg hover:shadow-accent/20 text-xl transform hover:ring-2 hover:ring-accent/30 ${currentPath.startsWith('/bodywork') ? 'bg-accent/10 text-accent font-bold scale-105' : 'text-textPrimary'}`}
               >
                 Bodywork
               </Link>
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+              <div className="absolute left-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto transform group-hover:translate-y-1 group-hover:shadow-2xl group-hover:shadow-accent/10">
                 {bodyworkCategories.map(category => (
                   <Link
                     key={category.slug}
                     href={`/bodywork/${category.slug}`}
-                    className="block px-5 py-2 text-textPrimary hover:bg-accent/20 hover:text-accent font-medium transition-all rounded-lg hover:scale-105"
+                    className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20"
                   >
                     {category.name}
                   </Link>
@@ -101,14 +116,49 @@ export default function Layout({ children }) {
         </div>
         {/* Authentication Section */}
         <div className="relative z-10 flex items-center space-x-4 pointer-events-auto" style={{transform: 'translateY(-12px)'}}>
+          {/* Connect Dropdown */}
+          <div className="relative group">
+            <button className="px-3 py-2 text-textPrimary hover:text-accent transition-all duration-300 text-xl font-semibold hover:scale-105 hover:bg-accent/20 hover:shadow-lg hover:shadow-accent/20 rounded-lg transform hover:ring-2 hover:ring-accent/30">
+              Connect ▼
+            </button>
+            {/* Invisible hover bridge - increased height for better UX */}
+            <div className="absolute top-full left-0 w-full h-8"></div>
+            <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto transform group-hover:translate-y-1 group-hover:shadow-2xl group-hover:shadow-accent/10">
+              <Link
+                href="/discuss"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20"
+              >
+                Discuss
+              </Link>
+              <Link
+                href="/suggest"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20"
+              >
+                Suggest
+              </Link>
+              <Link
+                href="/showcase"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20"
+              >
+                Showcase
+              </Link>
+              <Link
+                href="/contact"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+
           {status === 'loading' ? (
             <div className="text-textSecondary text-xl font-semibold">Loading...</div>
           ) : session ? (
             <div className="flex items-center space-x-1">
-              <span className="text-textPrimary text-xl font-semibold">Welcome, {session.user.name}</span>
+              <span className="text-textPrimary text-xl font-semibold">Welcome, {formatWelcomeName(session.user.name)}</span>
               <button
                 onClick={() => signOut()}
-                className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-colors duration-200 text-xl font-semibold"
+                className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-all duration-300 text-xl font-semibold hover:scale-105 hover:shadow-lg hover:shadow-accent/30 transform hover:ring-2 hover:ring-accent/30"
               >
                 Sign Out
               </button>
@@ -117,13 +167,13 @@ export default function Layout({ children }) {
             <div className="flex items-center space-x-1">
               <Link
                 href="/auth/signin"
-                className="px-3 py-2 text-textPrimary hover:text-accent transition-colors duration-200 text-xl font-semibold"
+                className="px-3 py-2 text-textPrimary hover:text-accent transition-all duration-300 text-xl font-semibold hover:scale-105 hover:bg-accent/20 hover:shadow-lg hover:shadow-accent/20 rounded-lg transform hover:ring-2 hover:ring-accent/30"
               >
                 Sign In
               </Link>
               <Link
                 href="/auth/signup"
-                className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-colors duration-200 text-xl font-semibold"
+                className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-all duration-300 text-xl font-semibold hover:scale-105 hover:shadow-lg hover:shadow-accent/30 transform hover:ring-2 hover:ring-accent/30"
               >
                 Sign Up
               </Link>
