@@ -2,8 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/wheels": "pages/wheels.js",
-  "/bodywork/[category]/[type]/[model]": "pages/bodywork/[category]/[type]/[model].js",
-  "/": "pages/index.js",
   "/wheels/[subcategory]": "pages/wheels/[subcategory].js"
 }
