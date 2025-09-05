@@ -4,8 +4,9 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { SessionProvider } from 'next-auth/react';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   useEffect(() => {
     // Override fetch to log requests
     const originalFetch = window.fetch;
@@ -47,7 +48,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <>
+    <SessionProvider session={session}>
       <Head>
         <title>WhyteOwl | Wheels & Bodywork Catalog</title>
         <link rel="icon" href="/favicon.ico" />
@@ -57,7 +58,7 @@ function MyApp({ Component, pageProps }) {
       </Layout>
       <SpeedInsights />
       <Analytics />
-    </>
+    </SessionProvider>
   );
 }
 

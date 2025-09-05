@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 
 const wheelCategories = [
   { name: 'Sport', slug: 'sport' },
@@ -44,21 +45,23 @@ export default function Layout({ children }) {
   console.log('Layout component rendered');
   const router = useRouter();
   const currentPath = useMemo(() => router.pathname, [router.pathname]);
+  const { data: session, status } = useSession();
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="sticky top-0 z-30 px-8 py-4 flex items-baseline justify-between relative pointer-events-none">
-        <div className="absolute inset-0 bg-surface/80 backdrop-blur-xl shadow-sm border-b border-border pointer-events-auto" style={{clipPath: 'polygon(0 0, 40% 0, 30% 100%, 0 100%)', boxShadow: '2px 0 0 0 white'}}></div>
+        <div className="absolute inset-0 bg-slate-800/60 backdrop-blur-xl shadow-sm border-b border-border pointer-events-auto" style={{clipPath: 'polygon(0 0, 40% 0, 30% 100%, 0 100%)', boxShadow: '2px 0 0 0 white'}}></div>
+        <div className="absolute inset-0 bg-slate-800/60 backdrop-blur-xl shadow-sm border-b border-border pointer-events-auto" style={{clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 70% 100%)', boxShadow: '-2px 0 0 0 white'}}></div>
         <div className="relative z-10 flex items-center space-x-4 pointer-events-auto">
           <Link href="/" className="hover:opacity-90">
             <Logo />
           </Link>
-          <nav className="ml-8 flex space-x-6 relative items-baseline mt-3">
+          <nav className="ml-8 flex space-x-2 relative items-baseline" style={{marginTop: '20px'}}>
             {/* Wheels Dropdown */}
             <div className="relative group pb-3">
               <Link
                 href="/wheels"
-                className={`font-medium px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-lg ${currentPath.startsWith('/wheels') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
+                className={`font-semibold px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-xl ${currentPath.startsWith('/wheels') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
               >
                 Wheels
               </Link>
@@ -78,7 +81,7 @@ export default function Layout({ children }) {
             <div className="relative group pb-3">
               <Link
                 href="/bodywork"
-                className={`font-medium px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-lg ${currentPath.startsWith('/bodywork') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
+                className={`font-semibold px-3 py-2 rounded-xl transition-all duration-200 hover:bg-accent/10 hover:text-accent text-xl ${currentPath.startsWith('/bodywork') ? 'bg-accent/10 text-accent font-bold' : 'text-textPrimary'}`}
               >
                 Bodywork
               </Link>
@@ -95,6 +98,37 @@ export default function Layout({ children }) {
               </div>
             </div>
           </nav>
+        </div>
+        {/* Authentication Section */}
+        <div className="relative z-10 flex items-center space-x-4 pointer-events-auto" style={{transform: 'translateY(-12px)'}}>
+          {status === 'loading' ? (
+            <div className="text-textSecondary text-xl font-semibold">Loading...</div>
+          ) : session ? (
+            <div className="flex items-center space-x-1">
+              <span className="text-textPrimary text-xl font-semibold">Welcome, {session.user.name}</span>
+              <button
+                onClick={() => signOut()}
+                className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-colors duration-200 text-xl font-semibold"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-1">
+              <Link
+                href="/auth/signin"
+                className="px-3 py-2 text-textPrimary hover:text-accent transition-colors duration-200 text-xl font-semibold"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="px-3 py-2 bg-accent hover:bg-accent/80 text-white rounded-lg transition-colors duration-200 text-xl font-semibold"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
       </header>
       <main className="flex-1 w-full px-8 py-8">{children}</main>
