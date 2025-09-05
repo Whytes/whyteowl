@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/wheels/[subcategory]": "pages/wheels/[subcategory].js",
+  "/bodywork/[category]/[type]/[model]": "pages/bodywork/[category]/[type]/[model].js",
   "/wheels": "pages/wheels.js",
-  "/bodywork": "pages/bodywork.js"
+  "/wheels/[subcategory]": "pages/wheels/[subcategory].js"
 }

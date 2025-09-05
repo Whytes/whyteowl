@@ -1294,6 +1294,7 @@ export default function BodyworkCategory() {
   const [search, setSearch] = useState("");
   const router = useRouter();
   const { category } = router.query;
+  const [notifications, setNotifications] = useState([]);
 
   // Get the brands for this category
   const categoryData = bodyworkData.find(cat => cat.category === category);
@@ -1333,9 +1334,39 @@ export default function BodyworkCategory() {
     }
   }, [categoryData]);
 
-  // Toggle brand section
-  const toggleBrand = (brandSlug) => {
-    setOpenBrands((prev) => ({ ...prev, [brandSlug]: !prev[brandSlug] }));
+  // Handle model click - check if it has parts
+  const handleModelClick = (brandSlug, model, e) => {
+    if (model.parts && model.parts.length > 0) {
+      // Has parts, navigate normally
+      router.push(`/bodywork/${category}/${brandSlug}/${model.slug}`);
+    } else {
+      // No parts, show notification
+      e.preventDefault();
+      
+      // Flash the button red
+      const button = e.currentTarget;
+      button.classList.add('border-red-500', 'bg-red-600', 'animate-pulse');
+      setTimeout(() => {
+        button.classList.remove('border-red-500', 'bg-red-600', 'animate-pulse');
+      }, 1000);
+      
+      // Add new notification to the top
+      const newNotification = {
+        id: Date.now(),
+        message: `The ${model.name} has no bodywork or liveries`
+      };
+      
+      setNotifications(prev => {
+        const newNotifications = [newNotification, ...prev];
+        // Keep only the most recent 3 notifications
+        return newNotifications.slice(0, 3);
+      });
+      
+      // Remove notification after 3 seconds
+      setTimeout(() => {
+        setNotifications(prev => prev.filter(n => n.id !== newNotification.id));
+      }, 3000);
+    }
   };
 
   return (
@@ -1373,11 +1404,26 @@ export default function BodyworkCategory() {
               <div className={`${openBrands[brand.slug] ? 'block' : 'hidden'} transition-all duration-300`}>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4 py-4">
                   {filteredModels.map(model => (
-                    <Link key={model.slug} href={`/bodywork/${category}/${brand.slug}/${model.slug}`} className="group block bg-gray-800 text-white border border-gray-600 rounded-lg p-3 text-center font-medium transition-all duration-200 hover:scale-105 hover:bg-blue-600 hover:border-blue-400">
-                      <span className="text-base font-bold group-hover:text-white capitalize">
-                        {model.name}
-                      </span>
-                    </Link>
+                    model.parts && model.parts.length > 0 ? (
+                      <Link key={model.slug} href={`/bodywork/${category}/${brand.slug}/${model.slug}`} className="group block bg-gray-800 text-white border border-gray-600 rounded-lg p-3 text-center font-medium transition-all duration-200 hover:scale-105 hover:bg-blue-600 hover:border-blue-400">
+                        <span className="text-base font-bold group-hover:text-white capitalize">
+                          {model.name}
+                        </span>
+                      </Link>
+                    ) : (
+                      <button
+                        key={model.slug}
+                        onClick={(e) => handleModelClick(brand.slug, model, e)}
+                        className="group block w-full bg-gray-800 text-white border border-gray-600 rounded-lg p-3 text-center font-medium transition-all duration-200 hover:scale-105 hover:bg-blue-600 hover:border-blue-400 relative"
+                      >
+                        <span className="text-base font-bold group-hover:text-white capitalize">
+                          {model.name}
+                        </span>
+                        <span className="absolute top-1 right-1 text-red-400 text-xs opacity-70 group-hover:opacity-100 transition-opacity">
+                          ⚠
+                        </span>
+                      </button>
+                    )
                   ))}
                 </div>
               </div>
@@ -1388,6 +1434,21 @@ export default function BodyworkCategory() {
           <div className="text-gray-400 text-center py-8">No brands found.</div>
         )}
       </div>
+      
+      {/* Notification popups */}
+      {notifications.map((notification, index) => (
+        <div 
+          key={notification.id}
+          className="fixed right-6 transform bg-gradient-to-r from-red-700 to-red-800 text-white px-6 py-3 rounded-xl shadow-2xl border border-white/30 backdrop-blur-sm z-50 animate-fade-in"
+          style={{ 
+            top: `${16 + (index * 80)}px`,
+            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: 'scale(1)'
+          }}
+        >
+          <p className="font-bold text-lg text-white drop-shadow-sm">{notification.message}</p>
+        </div>
+      ))}
     </div>
   );
 }

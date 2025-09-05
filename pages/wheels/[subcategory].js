@@ -483,7 +483,7 @@ export default function WheelSubcategory() {
         textElements.forEach((el, index) => {
           el.style.animationPlayState = 'running';
         });
-      }, 100);
+      }, 50);
     }
   }, [loading]);
 
@@ -508,7 +508,7 @@ export default function WheelSubcategory() {
     const wheelCards = document.querySelectorAll('.wheel-card');
     wheelCards.forEach((card, index) => {
       // Add staggered animation delays
-      card.style.transitionDelay = `${index * 0.1}s`;
+      card.style.transitionDelay = `${index * 0.02}s`;
       observer.observe(card);
     });
 
@@ -561,7 +561,7 @@ export default function WheelSubcategory() {
               <div key={i} className="flex flex-col items-center">
                 <div 
                   className={`wheel-card bg-white/80 backdrop-blur-xl border border-metal shadow-card rounded-2xl overflow-hidden group transition-all duration-200 hover:shadow-card-glow hover:border-accent relative cursor-pointer animate-grid-entrance animate-click-feedback ${gridAnimated ? 'animate-grid-entrance-delayed' : ''}`}
-                  style={{ animationDelay: `${i * 0.1}s` }}
+                  style={{ animationDelay: `${i * 0.02}s` }}
                   onClick={() => { 
                     setSelectedImage(img); 
                     setImageLoading(true);

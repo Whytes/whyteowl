@@ -98,13 +98,13 @@ img {
 }
 
 .animate-grid-entrance {
-  animation: grid-enter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: grid-enter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
 }
 
 .animate-grid-entrance-delayed {
-  animation: grid-enter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 0.2s;
+  animation: grid-enter 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.1s;
   opacity: 0;
 }
 
@@ -254,8 +254,8 @@ img {
 }
 
 .animate-category-label {
-  animation: category-label 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 0.1s;
+  animation: category-label 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.05s;
   opacity: 0;
 }
 
@@ -427,4 +427,16 @@ img {
 
 .animate-progress-pulse {
   animation: progress-pulse 1.5s ease-in-out infinite;
+}
+
+/* Notification slide-in animation */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
 }
