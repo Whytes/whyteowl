@@ -85,7 +85,7 @@ export default function Layout({ children }) {
                   <Link
                     key={cat.slug}
                     href={`/wheels/${cat.slug}`}
-                    className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20"
+                    className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20 hover:ring-inset"
                   >
                     {cat.name}
                   </Link>
@@ -105,7 +105,7 @@ export default function Layout({ children }) {
                   <Link
                     key={category.slug}
                     href={`/bodywork/${category.slug}`}
-                    className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20"
+                    className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20 hover:ring-inset"
                   >
                     {category.name}
                   </Link>
@@ -126,25 +126,25 @@ export default function Layout({ children }) {
             <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-600 shadow-lg rounded-2xl py-2 z-40 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto transform group-hover:translate-y-1 group-hover:shadow-2xl group-hover:shadow-accent/10">
               <Link
                 href="/discuss"
-                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all duration-200 rounded-lg hover:scale-105 hover:shadow-md transform hover:ring-1 hover:ring-accent/20 hover:ring-inset"
               >
                 Discuss
               </Link>
               <Link
                 href="/suggest"
-                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20 hover:ring-inset"
               >
                 Suggest
               </Link>
               <Link
                 href="/showcase"
-                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20 hover:ring-inset"
               >
                 Showcase
               </Link>
               <Link
                 href="/contact"
-                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20"
+                className="block px-5 py-2 text-textPrimary hover:bg-accent/30 hover:text-accent font-medium transition-all rounded-lg hover:scale-105 hover:shadow-md transform transition-all duration-200 hover:ring-1 hover:ring-accent/20 hover:ring-inset"
               >
                 Contact
               </Link>

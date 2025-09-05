@@ -73,8 +73,8 @@ export default function Contact() {
                     <span className="text-accent">💬</span>
                   </div>
                   <div>
-                    <h3 className="text-textPrimary font-medium">Community Discord</h3>
-                    <p className="text-textSecondary">Join our Discord server</p>
+                    <h3 className="text-textPrimary font-medium">Discord</h3>
+                    <p className="text-textSecondary">WhyteOwl</p>
                   </div>
                 </div>
               </div>

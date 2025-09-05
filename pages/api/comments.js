@@ -2,7 +2,18 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from './auth/[...nextauth]'
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+// Create a single Prisma instance for the API
+let prisma
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient()
+} else {
+  // In development, use a global instance to prevent connection issues
+  if (!global.prisma) {
+    global.prisma = new PrismaClient()
+  }
+  prisma = global.prisma
+}
 
 export default async function handler(req, res) {
   console.log('[COMMENTS API] Request received:', {
