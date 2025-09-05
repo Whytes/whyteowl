@@ -20,20 +20,10 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/bodywork": [
+    "/wheels/[subcategory]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/bodywork.js"
-    ],
-    "/bodywork/[category]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/bodywork/[category].js"
-    ],
-    "/wheels": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/wheels.js"
+      "static/chunks/pages/wheels/[subcategory].js"
     ]
   },
   "ampFirstPages": []

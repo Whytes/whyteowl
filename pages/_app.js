@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
       <SpeedInsights />
+      <Analytics />
     </>
   );
 }

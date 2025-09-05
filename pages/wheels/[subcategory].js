@@ -139,9 +139,24 @@ export default function WheelSubcategory() {
     setPanY(0);
   };
 
+  const getDisplayTitle = (subcategory) => {
+    if (!subcategory) return '';
+    
+    // Special cases for Benny's categories
+    if (subcategory === 'bennys-og') {
+      return "Benny's OG Wheels";
+    }
+    if (subcategory === 'bennys-bespoke') {
+      return "Benny's Bespoke Wheels";
+    }
+    
+    // Default formatting for other categories
+    return subcategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Wheels';
+  };
+
   return (
     <div className="pt-16">
-      <h1 className="text-5xl font-heading font-bold mb-8 capitalize text-white drop-shadow-lg text-center">{subcategory ? subcategory.replace('-', ' ') : ''} Wheels</h1>
+      <h1 className="text-5xl font-heading font-bold mb-8 capitalize text-white drop-shadow-lg text-center">{getDisplayTitle(subcategory)}</h1>
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
           {[1,2,3,4,5,6].map(i => (
@@ -160,7 +175,12 @@ export default function WheelSubcategory() {
             return (
               <div key={i} className="flex flex-col items-center">
                 <div className="bg-white/80 backdrop-blur-xl border border-metal shadow-card rounded-2xl overflow-hidden group transition-all duration-200 hover:scale-105 hover:shadow-xl-glass hover:border-accent relative cursor-pointer" onClick={() => { setSelectedImage(img); setZoom(1); setPanX(0); setPanY(0); setCurrentIndex(images.indexOf(img)); }}>
-                  <img src={img} alt={`${subcategory} wheel ${imageNumber}`} className="w-full h-56 object-cover group-hover:opacity-90 transition" />
+                  <img 
+                    src={img} 
+                    alt={`${subcategory} wheel ${imageNumber}`} 
+                    className="w-full h-56 object-cover group-hover:opacity-90 transition" 
+                    loading={i < 6 ? "eager" : "lazy"}
+                  />
                   <span className="absolute top-2 left-2 bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 text-white px-2 py-1 rounded text-sm font-bold shadow-lg border border-gray-500 backdrop-blur-sm" style={{textShadow: '0 0 6px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.4)'}}>{imageNumber}</span>
                 </div>
               </div>
