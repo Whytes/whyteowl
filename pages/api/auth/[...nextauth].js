@@ -73,6 +73,29 @@ export const authOptions = {
       if (token) {
         session.user.id = token.sub
         session.user.role = token.role
+        
+        try {
+          // Fetch the latest user data from database to ensure session is up to date
+          const dbUser = await prisma.user.findUnique({
+            where: { id: token.sub },
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              role: true
+            }
+          })
+          
+          if (dbUser) {
+            session.user.name = dbUser.name
+            session.user.email = dbUser.email
+            session.user.role = dbUser.role
+          }
+        } catch (error) {
+          console.error('Error fetching user data from database:', error)
+          // If database fetch fails, use token data as fallback
+          // This prevents authentication from breaking if database is temporarily unavailable
+        }
       }
       return session
     }

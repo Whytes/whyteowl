@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -72,6 +72,11 @@ export default function Profile() {
     e.preventDefault()
     setIsLoading(true)
 
+    // Update localStorage immediately for instant UI feedback
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('userDisplayName', generalForm.name)
+    }
+
     try {
       const response = await fetch('/api/user/update', {
         method: 'PUT',
@@ -97,6 +102,16 @@ export default function Profile() {
             email: generalForm.email,
           }
         })
+        // Force a session refresh to get latest data from database
+        await getSession()
+        // Also update localStorage as backup
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('userDisplayName', generalForm.name)
+          // Dispatch custom event to notify Layout component
+          window.dispatchEvent(new CustomEvent('userNameChanged', { 
+            detail: { name: generalForm.name } 
+          }))
+        }
         // Don't reset form - keep the current values
       } else {
         showMessage(data.error || 'Failed to update profile', 'error')

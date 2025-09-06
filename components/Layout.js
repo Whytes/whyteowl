@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 
 const wheelCategories = [
@@ -46,6 +46,59 @@ export default function Layout({ children }) {
   const router = useRouter();
   const currentPath = useMemo(() => router.pathname, [router.pathname]);
   const { data: session, status } = useSession();
+  const [displayName, setDisplayName] = useState(session?.user?.name || '');
+
+  // Update display name when session changes
+  useEffect(() => {
+    if (session?.user?.name) {
+      console.log('Layout: Session name updated to:', session.user.name);
+      setDisplayName(session.user.name);
+      // Also store in localStorage as backup
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('userDisplayName', session.user.name);
+      }
+    }
+  }, [session?.user?.name]);
+
+  // Initialize display name on mount
+  useEffect(() => {
+    if (session?.user?.name && displayName === '') {
+      console.log('Layout: Initializing display name to:', session.user.name);
+      setDisplayName(session.user.name);
+    } else if (typeof window !== 'undefined' && displayName === '') {
+      // Fallback to localStorage if session doesn't have name
+      const storedName = localStorage.getItem('userDisplayName');
+      if (storedName) {
+        console.log('Layout: Using stored name from localStorage:', storedName);
+        setDisplayName(storedName);
+      }
+    }
+  }, [session, displayName]);
+
+  // Listen for localStorage changes (in case name is updated from another component)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleStorageChange = (e) => {
+        if (e.key === 'userDisplayName' && e.newValue) {
+          console.log('Layout: localStorage name updated to:', e.newValue);
+          setDisplayName(e.newValue);
+        }
+      };
+
+      const handleNameChange = (e) => {
+        console.log('Layout: Custom event name updated to:', e.detail.name);
+        setDisplayName(e.detail.name);
+      };
+
+      window.addEventListener('storage', handleStorageChange);
+      window.addEventListener('userNameChanged', handleNameChange);
+      
+      return () => {
+        window.removeEventListener('storage', handleStorageChange);
+        window.removeEventListener('userNameChanged', handleNameChange);
+      };
+    }
+  }, []);
 
   // Helper function to format the welcome name
   const formatWelcomeName = (fullName) => {
@@ -159,9 +212,8 @@ export default function Layout({ children }) {
               <Link 
                 href="/profile"
                 className="text-accent hover:text-accent/80 text-xl font-semibold transition-colors"
-                key={session.user?.name || 'user'}
               >
-                {formatWelcomeName(session.user?.name)}
+                {formatWelcomeName(displayName)}
               </Link>
               <button
                 onClick={() => signOut()}
