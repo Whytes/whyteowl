@@ -109,20 +109,20 @@ export default function Suggest() {
         <div className="flex space-x-1 mb-8 bg-gray-800/30 p-1 rounded-lg">
           <button
             onClick={() => handleTabChange('suggest')}
-            className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 ${
+            className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 transform ${
               activeTab === 'suggest'
-                ? 'bg-accent text-white shadow-lg'
-                : 'text-textSecondary hover:text-textPrimary hover:bg-gray-700/50'
+                ? 'bg-accent text-white shadow-lg scale-105'
+                : 'text-textSecondary hover:text-accent hover:bg-accent/20 hover:scale-105 hover:shadow-lg hover:shadow-accent/20 hover:ring-2 hover:ring-accent/30'
             }`}
           >
             Suggest Features
           </button>
           <button
             onClick={() => handleTabChange('view')}
-            className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 ${
+            className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 transform ${
               activeTab === 'view'
-                ? 'bg-accent text-white shadow-lg'
-                : 'text-textSecondary hover:text-textPrimary hover:bg-gray-700/50'
+                ? 'bg-accent text-white shadow-lg scale-105'
+                : 'text-textSecondary hover:text-accent hover:bg-accent/20 hover:scale-105 hover:shadow-lg hover:shadow-accent/20 hover:ring-2 hover:ring-accent/30'
             }`}
           >
             View Suggestions
