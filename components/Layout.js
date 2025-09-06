@@ -159,8 +159,9 @@ export default function Layout({ children }) {
               <Link 
                 href="/profile"
                 className="text-accent hover:text-accent/80 text-xl font-semibold transition-colors"
+                key={session.user?.name || 'user'}
               >
-                {formatWelcomeName(session.user.name)}
+                {formatWelcomeName(session.user?.name)}
               </Link>
               <button
                 onClick={() => signOut()}
